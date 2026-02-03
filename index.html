@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mystery Box</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top, #111 0%, #000 65%);
+      font-family: Arial, Helvetica, sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hint {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      opacity: 0.85;
+    }
+
+    /* Mystery Box */
+    .box {
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(145deg, #3a3a3a, #1a1a1a);
+      border-radius: 14px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+      transition: transform 0.2s ease;
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+    }
+
+    .box::before {
+      content: "🎁";
+      font-size: 80px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Reveal Section */
+    .reveal {
+      display: none;
+      animation: popIn 1s ease forwards;
+    }
+
+    .reveal img {
+      max-width: 100%;
+      width: 320px;
+      border-radius: 14px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.85);
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.85;
+    }
+
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.75);
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="hint" id="hint">Tap the mystery box</div>
+
+    <div class="box" id="box"></div>
+
+    <div class="reveal" id="reveal">
+      <img src="assets/toyota-markx-black-gold.png" alt="Toyota Mark X 2020 Black with Gold Rims">
+      <div class="title">Toyota Mark X</div>
+      <div class="subtitle">Model Year: 2020</div>
+    </div>
+  </div>
+
+  <script>
+    const box = document.getElementById("box");
+    const reveal = document.getElementById("reveal");
+    const hint = document.getElementById("hint");
+
+    box.addEventListener("click", () => {
+      box.style.display = "none";
+      hint.textContent = "Surprise revealed!";
+      reveal.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
